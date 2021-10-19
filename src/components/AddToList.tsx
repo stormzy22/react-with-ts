@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
+import { IState as Props } from '../App';
 
 interface IInput {
-  people: {
-    name: string;
-    age: number;
-    url: string;
-    note?: string;
-  }[];
+  people: Props['people'];
+  setPeople: React.Dispatch<React.SetStateAction<Props['people']>>;
 }
-const AddToList = (): JSX.Element => {
+const AddToList: React.FC<IInput> = ({ setPeople, people }): JSX.Element => {
   const [input, setInput] = useState({
     age: '',
     name: '',
@@ -21,7 +18,18 @@ const AddToList = (): JSX.Element => {
   };
 
   const handleClick = (): void => {
-    console.log('hi');
+    if (!input.age || !input.name || !input.age) {
+      return;
+    }
+    setPeople([
+      ...people,
+      {
+        name: input.name,
+        age: parseInt(input.age),
+        url: input.img,
+        note: input.note,
+      },
+    ]);
   };
   return (
     <div className="AddToList">
