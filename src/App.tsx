@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
+import AddToList from './components/AddToList';
 import List from './components/List';
 
-interface IState {
+export interface IState {
   people: {
     name: string;
     age: number;
@@ -25,6 +26,7 @@ const App = (): JSX.Element => {
     <div className="App">
       <h1>People invited to my party</h1>
       <List people={people} />
+      <AddToList />
     </div>
   );
 };
